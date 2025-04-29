@@ -1,0 +1,54 @@
+{
+    "name": "AuditoriumInputActions",
+    "maps": [
+        {
+            "name": "MainActions",
+            "id": "e3b025d5-2ca1-4197-b4ad-5ff7ec94066c",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "448faa0d-000c-4c04-a2e9-fd1c6ec853a8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "67803143-256c-4621-afce-159a1370db07",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7f0a05ec-e7fb-4ea9-8767-5c5708e624d2",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a610137f-3c77-44c8-80cb-df5bf44840ae",
+                    "path": "<Pointer>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

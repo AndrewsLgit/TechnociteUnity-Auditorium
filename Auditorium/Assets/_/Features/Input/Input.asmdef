@@ -1,8 +1,8 @@
 {
-    "name": "Game",
+    "name": "Input",
     "rootNamespace": "",
     "references": [
-        "GUID:c6baea0c4bde5604486b30e3434f0f28"
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
