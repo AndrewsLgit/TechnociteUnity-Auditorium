@@ -599,7 +599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentVolume: 10
   _maxVolume: 100
-  _volumeIncrement: 10
+  _volumeIncrement: 1.25
   _volumeDecrement: 5
   _audioLayer1:
   - {fileID: 1722237142}

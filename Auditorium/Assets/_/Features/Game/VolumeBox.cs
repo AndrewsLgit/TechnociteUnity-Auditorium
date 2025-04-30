@@ -11,6 +11,7 @@ public class VolumeBoxScript : MonoBehaviour
     [SerializeField] private float _currentVolume;
     [SerializeField] private float _maxVolume;
     private float _minVolume = 0;
+    private float _currentAudioTime;
     
     [SerializeField] private float _volumeIncrement;
     [SerializeField] private float _volumeDecrement;
@@ -39,10 +40,11 @@ public class VolumeBoxScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DecreaseVolume(_volumeDecrement);
+        DecreaseVolumeOverTime(_volumeDecrement);
+        _currentAudioTime = _audioLayer1[0].time;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    /*private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Particle"))
         {
@@ -53,8 +55,22 @@ public class VolumeBoxScript : MonoBehaviour
                 
             }
         }
+    }*/
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Particle"))
+        {
+            IncreaseVolume(_volumeIncrement);
+
+            if (_currentVolume >= _maxVolumeSteps[0] && _currentVolume <= _maxVolumeSteps[1]) PlayAudioLayer(_audioLayer1);
+            if (_currentVolume >= _maxVolumeSteps[1] && _currentVolume <= _maxVolumeSteps[2]) PlayAudioLayer(_audioLayer2);
+            if (_currentVolume >= _maxVolumeSteps[2] && _currentVolume <= _maxVolumeSteps[3]) PlayAudioLayer(_audioLayer3);
+            
+            // TODO: stop audio layers when current volume is not on audio step anymore
+        }
     }
-    
+
     #endregion
 
     #region Main Methods
@@ -62,11 +78,12 @@ public class VolumeBoxScript : MonoBehaviour
     private void IncreaseVolume(float amount)
     {
         if (_currentVolume < _maxVolume) _currentVolume += amount;
+        Debug.Log("Volume Increased");
     }
 
-    private void DecreaseVolume(float amount)
+    private void DecreaseVolumeOverTime(float amount)
     {
-        if (_currentVolume > _minVolume) _minVolume -= amount * Time.deltaTime;
+        if (_currentVolume > _minVolume) _currentVolume -= amount * Time.deltaTime;
     }
 
     #endregion
@@ -94,7 +111,8 @@ public class VolumeBoxScript : MonoBehaviour
         foreach (var audioSource in audioLayer)
         {
             audioSource.volume = _currentVolume;
-            audioSource.Play();
+            audioSource.time = _currentAudioTime;
+            if (!audioSource.isPlaying) audioSource.Play();
         }
     }
 

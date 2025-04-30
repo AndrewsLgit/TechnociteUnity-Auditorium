@@ -49,11 +49,8 @@ public class EffectorScript : MonoBehaviour
     {
         float newRadius = Vector2.Distance(transform.position, GetMouseWorldPoint());
         
-            if (newRadius >= _maxScale || newRadius <= _minScale)
-            {
-                _mouseOverBorder = false;
-                
-            }
+            if (newRadius >= _maxScale || newRadius <= _minScale) _mouseOverBorder = false;
+            
             else
             {
                 _mouseOverBorder = true;
@@ -62,7 +59,7 @@ public class EffectorScript : MonoBehaviour
                 //transform.localScale = new Vector3(_previousScale.x + 0.1f, _previousScale.y + 0.1f, 0);
             }
             
-            Debug.Log(_mouseOverBorder);
+            //Debug.Log(_mouseOverBorder);
     }
 
     private void OnMouseDrag()
@@ -91,7 +88,7 @@ public class EffectorScript : MonoBehaviour
     private void OnClickStart()
     {
         
-        Debug.Log(GetMouseWorldPoint().ToString());
+        //Debug.Log(GetMouseWorldPoint().ToString());
     }
     
     #endregion
