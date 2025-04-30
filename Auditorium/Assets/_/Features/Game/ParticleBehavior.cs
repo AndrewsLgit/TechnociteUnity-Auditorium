@@ -42,7 +42,8 @@ public class ParticleBehavior : MonoBehaviour
 
     private void Move()
     {
-        _rigidbody.linearVelocity = new Vector2(0, -_speed);
+        //_rigidbody.linearVelocity = new Vector2(0, -_speed);
+        _rigidbody.AddForce(gameObject.transform.up * (_speed));
     }
     
     #endregion

@@ -1,12 +1,11 @@
 using System;
 using UnityEngine;
-using Input = UnityEngine.Windows.Input;
 
-public class OrientatorScript : MonoBehaviour
+public class EffectorScript : MonoBehaviour
 {
     #region Private
 
-    private IAuditoriumCharacterController _characterController;
+    private IAuditoriumInputController _inputController;
     private Ray _ray;
     private Camera _camera;
 
@@ -17,9 +16,9 @@ public class OrientatorScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _characterController = GetComponent<IAuditoriumCharacterController>();
+        _inputController = GetComponent<IAuditoriumInputController>();
         _camera = Camera.main;
-        
+        SubscribeToAllEvents();
     }
 
     private void OnDestroy()
@@ -27,15 +26,15 @@ public class OrientatorScript : MonoBehaviour
         UnSubscribeFromAllEvents();
     }
 
-    private void OnDisable()
+    /*private void OnDisable()
     {
         UnSubscribeFromAllEvents();
-    }
+    }*/
 
     // Update is called once per frame
     void Update()
     {
-        var mousePosInScreen = _characterController.MousePosition;
+        
     }
     
     #endregion
@@ -47,33 +46,33 @@ public class OrientatorScript : MonoBehaviour
         var pos = GetMousePosition();
         return _camera.ScreenToWorldPoint(new Vector3(pos.x, pos.y, _camera.transform.position.z));
     }
-    
+
     private void OnClickEnd()
     {
-        throw new NotImplementedException();
+        /*Debug.Log(LookMousePosition().ToString());*/
     }
 
     private void OnClickStart()
     {
-        throw new NotImplementedException();
+        Debug.Log(LookMousePosition().ToString());
     }
     
     #endregion
 
     #region Utils
 
-    private Vector3 GetMousePosition() => _characterController.MousePosition;
+    private Vector3 GetMousePosition() => _inputController.MousePosition;
 
     private void UnSubscribeFromAllEvents()
     {
-        _characterController.UnsubFromClickStartEvent(OnClickStart);
-        _characterController.UnsubFromClickEndEvent(OnClickEnd);
+        _inputController.UnsubFromClickStartEvent(OnClickStart);
+        _inputController.UnsubFromClickEndEvent(OnClickEnd);
     }
     
     private void SubscribeToAllEvents()
     {
-        _characterController.SubToClickStartEvent(OnClickStart);
-        _characterController.SubToClickEndEvent(OnClickEnd);
+        _inputController.SubToClickStartEvent(OnClickStart);
+        _inputController.SubToClickEndEvent(OnClickEnd);
         
     }
 

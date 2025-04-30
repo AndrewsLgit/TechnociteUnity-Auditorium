@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public interface IAuditoriumCharacterController
+public interface IAuditoriumInputController
 {
     Vector2 MousePosition { get; }
     
@@ -11,7 +11,7 @@ public interface IAuditoriumCharacterController
     void UnsubFromClickStartEvent(Action clickAction);
     void UnsubFromClickEndEvent(Action clickAction);
 }
-public class AuditoriumCharacterController : MonoBehaviour, AuditoriumInputSystem.IMainActionsActions, IAuditoriumCharacterController
+public class AuditoriumInputController : MonoBehaviour, AuditoriumInputSystem.IMainActionsActions, IAuditoriumInputController
 {
     
     #region Public

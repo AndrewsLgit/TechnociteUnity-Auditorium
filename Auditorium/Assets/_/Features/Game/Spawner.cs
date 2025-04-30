@@ -4,14 +4,6 @@ using Random = UnityEngine.Random;
 
 public class SpawnerScript : MonoBehaviour
 {
-
-    #region Public
-
-    // no public variables
-    // .l.
-
-    #endregion
-    
     #region Private
     
     [SerializeField] private Transform _movementDirection;
@@ -45,7 +37,7 @@ public class SpawnerScript : MonoBehaviour
 
     #endregion
     
-    #region Utils
+    #region Main Methods
     
     private void Spawn()
     {
@@ -55,18 +47,13 @@ public class SpawnerScript : MonoBehaviour
         {
             GameObject instance = _spawnPool.GetFirstAvailableInstance();
             // TODO: get range from circle center to radius
-            var randomPos = Random.insideUnitCircle * _circleSize;
+            var randomPos = Random.insideUnitCircle + gameObject.transform.position * _circleSize;
             instance.transform.position = randomPos;
             
             Vector2 direction = (Vector2)_movementDirection.transform.position - (Vector2)instance.transform.position;
             instance.transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
-            //instance.transform.rotation = Quaternion.FromToRotation(instance.transform.up, direction);
-            Debug.Log($"Instance {instance.name} direction {direction}, rotation {instance.transform.rotation}");
-            /*float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            instance.transform.eulerAngles = new Vector3(0, 0, angle);*/
             
             instance.SetActive(true);
-            // TODO: instance.GetComponent<>() to get instance behavior script
             _spawnTimer = 0f;
         }
     }
