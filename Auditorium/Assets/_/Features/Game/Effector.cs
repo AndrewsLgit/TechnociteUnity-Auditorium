@@ -9,10 +9,9 @@ public class EffectorScript : MonoBehaviour
     private Ray _ray;
     private Camera _camera;
     private bool _mouseOverBorder = false;
-    private bool _isDragging = false;
     private Vector3 _previousScale;
-    [SerializeField] private float _minScale = 0.4f;
-    [SerializeField] private float _maxScale = 1.2f;
+    private float _minScale;
+    private float _maxScale;
 
     #endregion
     

@@ -1250,14 +1250,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Effector
       objectReference: {fileID: 0}
-    - target: {fileID: 2070199352619123042, guid: aba37918c511c02459da3bb6371d3981, type: 3}
-      propertyPath: _maxScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070199352619123042, guid: aba37918c511c02459da3bb6371d3981, type: 3}
-      propertyPath: _minScale
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 2514369051560658782, guid: aba37918c511c02459da3bb6371d3981, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1297,10 +1289,6 @@ PrefabInstance:
     - target: {fileID: 2514369051560658782, guid: aba37918c511c02459da3bb6371d3981, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 8857164110702577046, guid: aba37918c511c02459da3bb6371d3981, type: 3}
-      propertyPath: m_ForceMagnitude
-      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

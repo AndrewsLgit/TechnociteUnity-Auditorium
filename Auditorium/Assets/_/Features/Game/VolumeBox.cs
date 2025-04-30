@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Codice.CM.Common;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -20,6 +21,11 @@ public class VolumeBoxScript : MonoBehaviour
     [SerializeField] private AudioSource[] _audioLayer3;
 
     private int[] _maxVolumeSteps = new int[4];
+
+    private enum AudioStep
+    {
+        
+    }
 
     #endregion
     
@@ -63,8 +69,16 @@ public class VolumeBoxScript : MonoBehaviour
         {
             IncreaseVolume(_volumeIncrement);
 
-            if (_currentVolume >= _maxVolumeSteps[0] && _currentVolume <= _maxVolumeSteps[1]) PlayAudioLayer(_audioLayer1);
-            if (_currentVolume >= _maxVolumeSteps[1] && _currentVolume <= _maxVolumeSteps[2]) PlayAudioLayer(_audioLayer2);
+            if (_currentVolume >= _maxVolumeSteps[0] && _currentVolume <= _maxVolumeSteps[1])
+            {
+                StopAudioLayer(_audioLayer2);
+                PlayAudioLayer(_audioLayer1);
+            }
+            if (_currentVolume >= _maxVolumeSteps[1] && _currentVolume <= _maxVolumeSteps[2])
+            {
+                StopAudioLayer(_audioLayer3);
+                PlayAudioLayer(_audioLayer2);
+            }
             if (_currentVolume >= _maxVolumeSteps[2] && _currentVolume <= _maxVolumeSteps[3]) PlayAudioLayer(_audioLayer3);
             
             // TODO: stop audio layers when current volume is not on audio step anymore
@@ -113,6 +127,16 @@ public class VolumeBoxScript : MonoBehaviour
             audioSource.volume = _currentVolume;
             audioSource.time = _currentAudioTime;
             if (!audioSource.isPlaying) audioSource.Play();
+        }
+    }
+
+    private void StopAudioLayer(AudioSource[] audioLayer)
+    {
+        foreach (var audioSource in audioLayer)
+        {
+            // audioSource.volume = _currentVolume;
+            // audioSource.time = _currentAudioTime;
+            if (audioSource.isPlaying) audioSource.Stop();
         }
     }
 
